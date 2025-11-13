@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACE Engenharia - Login</title>
+
+  <!-- (Opcional) Fonte parecida com a do layout -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     * {
@@ -13,23 +21,24 @@
     }
 
     body {
-      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+        sans-serif;
       width: 100%;
       height: 100vh;
       overflow: hidden;
       background-color: #ffffff;
     }
 
-    /* Fundo exato do Figma */
+    /* FUNDO EXATO DO LAYOUT */
     .bg {
       position: fixed;
       inset: 0;
-      background: url("bg-ace-login.png") no-repeat center center;
+      background: url("bg-ace-login.png") no-repeat center top;
       background-size: cover;
       z-index: 1;
     }
 
-    /* Formulário funcional por cima da arte */
+    /* FORMULÁRIO POR CIMA DO FUNDO */
     .login-container {
       position: fixed;
       right: 9%;
@@ -59,7 +68,7 @@
 
     .input-box span.icon {
       font-size: 18px;
-      color: #0A2A43;
+      color: #0a2a43;
       margin-right: 10px;
     }
 
@@ -90,7 +99,7 @@
     .btn-login {
       width: 210px;
       padding: 12px;
-      background: #E42626;
+      background: #e42626;
       color: white;
       border-radius: 30px;
       border: none;
@@ -116,18 +125,20 @@
       font-weight: 500;
     }
 
+    /* Ajuste simples para telas menores */
     @media (max-width: 900px) {
       body {
-        overflow: auto;
+        overflow-y: auto;
       }
+
       .login-container {
         position: static;
         transform: none;
         margin: 40px auto;
         width: min(360px, 90vw);
       }
+
       .bg {
-        position: fixed;
         background-position: center top;
       }
     }
@@ -135,26 +146,25 @@
 </head>
 
 <body>
-
   <!-- FUNDO -->
   <div class="bg"></div>
 
-  <!-- FORMULÁRIO FUNCIONAL -->
+  <!-- FORMULÁRIO -->
   <div class="login-container">
     <h2>USER LOGIN</h2>
 
     <div class="input-box">
       <span class="icon">👤</span>
-      <input type="text" id="usuario" placeholder="Usuário">
+      <input type="text" id="usuario" placeholder="Usuário" />
     </div>
 
     <div class="input-box">
       <span class="icon">🔒</span>
-      <input type="password" id="senha" placeholder="Senha">
+      <input type="password" id="senha" placeholder="Senha" />
     </div>
 
     <div class="options">
-      <input type="checkbox" id="lembrar">
+      <input type="checkbox" id="lembrar" />
       <label for="lembrar">Lembrar-me</label>
       <a href="#">Esqueceu a senha?</a>
     </div>
@@ -168,10 +178,9 @@
 
   <script>
     function login() {
-      // Aqui depois você integra com Apps Script / SSO.
-      alert('Login clicado (ainda sem integração)!');
+      // Depois você troca isso pela integração real com seu sistema
+      alert("Login clicado (ainda sem integração)!");
     }
   </script>
-
 </body>
 </html>
