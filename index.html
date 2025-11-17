@@ -69,12 +69,16 @@
        FORMULÁRIO DE LOGIN
        ============================ */
     .login-container {
-      width: 360px;
-      z-index: 3;
-      color: #ffffff;
-      text-align: left;
-      margin-right: 20px;
-    }
+    position: absolute;   /* permite mover no layout */
+    right: 6%;            /* ajuste fino – mais perto do branco */
+    top: 50%;             /* centraliza verticalmente */
+    transform: translateY(-50%);
+    width: 360px;
+    color: #ffffff;
+    text-align: left;
+    z-index: 3;
+   }
+
 
     .login-container h2 {
       font-size: 32px;
@@ -215,3 +219,4 @@
 
 </body>
 </html>
+
