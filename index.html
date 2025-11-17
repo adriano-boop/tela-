@@ -19,66 +19,59 @@
       box-sizing: border-box;
     }
 
-    /* FUNDO GERAL DA PÁGINA (barras laterais) */
     body {
-       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
-       sans-serif;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-
-      /* Azul EXATO da arte */
-        background-color: #062A45;
-
-         color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #ffffff;
     }
 
-
-    /* CONTAINER DO FUNDO (imagem principal) */
+    /* ============================
+       FUNDO DA TELA
+       ============================ */
     .bg {
       position: fixed;
       inset: 0;
+      background: url("/bg-ace-login.png") center center no-repeat;
+      background-size: cover;
+      z-index: 1;
+    }
+
+    /* ============================
+       FAIXA AZUL ESCURA (ÁREA DO FORMULÁRIO)
+       ============================ */
+    .faixa-escura {
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+
+      /* LARGURA EXATA DA FAIXA ESCURA */
+      width: 36vw;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1;
-      pointer-events: none; /* o fundo não interfere nos cliques */
-    }
-
-    /* A imagem grande fica dentro do ::before, centralizada */
-    .bg::before {
-      content: "";
-      display: block;
-
-      /* mantém a proporção da arte */
-      width: 100%;
-      height: 100%;
-
-      max-width: 1920px;  /* ajuste se sua imagem tiver outro tamanho base */
-      max-height: 1080px;
-
-      margin: 0 auto;
-      background: url("/bg-ace-login.png") center center no-repeat;
-      background-size: contain;
-    }
-
-    /* FORMULÁRIO */
-    .login-container {
-      position: fixed;
-      right: 11%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 360px;
+      background: transparent;
       z-index: 2;
+    }
+
+    /* ============================
+       FORMULÁRIO DE LOGIN
+       ============================ */
+    .login-container {
+      width: 360px;
+      z-index: 3;
       color: #ffffff;
       text-align: left;
+      margin-right: 20px;
     }
 
     .login-container h2 {
       font-size: 32px;
       font-weight: 700;
       margin-bottom: 25px;
-      letter-spacing: 0.04em;
     }
 
     .input-box {
@@ -89,7 +82,6 @@
       display: flex;
       align-items: center;
       margin-bottom: 18px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
 
     .input-box span.icon {
@@ -104,11 +96,10 @@
       outline: none;
       font-size: 15px;
       font-family: inherit;
-      color: #222;
     }
 
     .options {
-      font-size: 13px;
+      font-size: 14px;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
@@ -119,11 +110,7 @@
     .options a {
       color: #ffffff;
       text-decoration: none;
-      margin-left: 6px;
-    }
-
-    .options a:hover {
-      text-decoration: underline;
+      margin-left: 10px;
     }
 
     .btn-login {
@@ -138,17 +125,14 @@
       margin-bottom: 15px;
       display: block;
       transition: 0.2s ease;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
     }
 
     .btn-login:hover {
       background: #c51a1a;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
     }
 
     .register {
-      font-size: 15px;
+      font-size: 16px;
       margin-top: 5px;
     }
 
@@ -158,85 +142,68 @@
       font-weight: 500;
     }
 
-    .register a:hover {
-      text-decoration: underline;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 1024px) {
+    /* ============================
+       RESPONSIVO
+       ============================ */
+    @media (max-width: 900px) {
       body {
         overflow-y: auto;
       }
 
+      .faixa-escura {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 40px 0;
+      }
+
       .login-container {
-        position: static;
-        transform: none;
-        margin: 40px auto;
-        width: min(360px, 90vw);
-      }
-
-      .bg {
-        align-items: flex-start;
-      }
-
-      .bg::before {
-        max-width: 1200px;
-        max-height: 900px;
-        background-position: center top;
-        background-size: cover;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .login-container {
-        margin-top: 120px;
-      }
-
-      .login-container h2 {
-        font-size: 26px;
+        margin: auto;
       }
     }
   </style>
 </head>
 
 <body>
+
   <!-- FUNDO -->
   <div class="bg"></div>
 
-  <!-- FORMULÁRIO -->
-  <div class="login-container">
-    <h2>USER LOGIN</h2>
+  <!-- ÁREA DA FAIXA ESCURA -->
+  <div class="faixa-escura">
+    <!-- FORMULÁRIO -->
+    <div class="login-container">
+      <h2>USER LOGIN</h2>
 
-    <div class="input-box">
-      <span class="icon">👤</span>
-      <input type="text" id="usuario" placeholder="Usuário" />
-    </div>
+      <div class="input-box">
+        <span class="icon">👤</span>
+        <input type="text" id="usuario" placeholder="Usuário" />
+      </div>
 
-    <div class="input-box">
-      <span class="icon">🔒</span>
-      <input type="password" id="senha" placeholder="Senha" />
-    </div>
+      <div class="input-box">
+        <span class="icon">🔒</span>
+        <input type="password" id="senha" placeholder="Senha" />
+      </div>
 
-    <div class="options">
-      <input type="checkbox" id="lembrar" />
-      <label for="lembrar">Lembrar-me</label>
-      <span>|</span>
-      <a href="#">Esqueceu a senha?</a>
-    </div>
+      <div class="options">
+        <input type="checkbox" id="lembrar" />
+        <label for="lembrar">Lembrar-me</label>
+        <a href="#">Esqueceu a senha?</a>
+      </div>
 
-    <button class="btn-login" onclick="login()">Login</button>
+      <button class="btn-login" onclick="login()">Login</button>
 
-    <div class="register">
-      <a href="#">Cadastrar</a>
+      <div class="register">
+        <a href="#">Cadastrar</a>
+      </div>
     </div>
   </div>
 
   <script>
     function login() {
-      // Aqui depois você troca pela lógica real
       alert("Login clicado!");
     }
   </script>
+
 </body>
 </html>
-
