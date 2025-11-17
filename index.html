@@ -33,8 +33,16 @@
     .bg {
       position: fixed;
       inset: 0;
-      background: url("/bg-ace-login.png") center center no-repeat;
-      background-size: cover;
+
+      /* cor de fundo igual às barras laterais da arte */
+      background-color: #02273f;
+
+      /* imagem SEM CORTAR */
+      background-image: url("/bg-ace-login.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+
       z-index: 1;
     }
 
@@ -47,7 +55,7 @@
       top: 0;
       height: 100vh;
 
-      /* LARGURA EXATA DA FAIXA ESCURA */
+      /* largura aproximada da faixa escura da arte */
       width: 36vw;
 
       display: flex;
