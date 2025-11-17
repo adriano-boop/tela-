@@ -19,33 +19,55 @@
       box-sizing: border-box;
     }
 
+    /* FUNDO GERAL DA PÁGINA (barras laterais) */
     body {
       font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
         sans-serif;
       width: 100%;
       height: 100vh;
       overflow: hidden;
+
+      /* Azul + degradê para ficar mais moderno e “continuar” a arte */
+      background:
+        radial-gradient(circle at 10% 50%, #053152 0, #021b33 35%, #011324 70%, #010c19 100%);
+      color: #ffffff;
     }
 
-    /* FUNDO – imagem inteira e sem bordas brancas */
+    /* CONTAINER DO FUNDO (imagem principal) */
     .bg {
       position: fixed;
       inset: 0;
-      background-color: #021d34; /* azul escuro do layout, cobre as sobras */
-      background-image: url("/bg-ace-login.png");
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain; /* mostra a imagem completa */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 1;
+      pointer-events: none; /* o fundo não interfere nos cliques */
     }
 
-    /* FORMULÁRIO POR CIMA DO FUNDO */
+    /* A imagem grande fica dentro do ::before, centralizada */
+    .bg::before {
+      content: "";
+      display: block;
+
+      /* mantém a proporção da arte */
+      width: 100%;
+      height: 100%;
+
+      max-width: 1920px;  /* ajuste se sua imagem tiver outro tamanho base */
+      max-height: 1080px;
+
+      margin: 0 auto;
+      background: url("/bg-ace-login.png") center center no-repeat;
+      background-size: contain;
+    }
+
+    /* FORMULÁRIO */
     .login-container {
       position: fixed;
-      right: 10%;           /* aproxima da posição do layout */
+      right: 11%;
       top: 50%;
       transform: translateY(-50%);
-      width: 380px;         /* largura próxima do modelo */
+      width: 360px;
       z-index: 2;
       color: #ffffff;
       text-align: left;
@@ -54,8 +76,8 @@
     .login-container h2 {
       font-size: 32px;
       font-weight: 700;
-      margin-bottom: 24px;
-      letter-spacing: 1px;
+      margin-bottom: 25px;
+      letter-spacing: 0.04em;
     }
 
     .input-box {
@@ -65,7 +87,8 @@
       padding: 14px 18px;
       display: flex;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
 
     .input-box span.icon {
@@ -80,11 +103,12 @@
       outline: none;
       font-size: 15px;
       font-family: inherit;
+      color: #222;
     }
 
     .options {
-      font-size: 14px;
-      margin: 10px 0 20px;
+      font-size: 13px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -94,29 +118,37 @@
     .options a {
       color: #ffffff;
       text-decoration: none;
-      margin-left: 10px;
+      margin-left: 6px;
+    }
+
+    .options a:hover {
+      text-decoration: underline;
     }
 
     .btn-login {
-      width: 220px;
+      width: 210px;
       padding: 12px;
       background: #e42626;
-      color: #ffffff;
+      color: white;
       border-radius: 30px;
       border: none;
       font-size: 18px;
       cursor: pointer;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
       display: block;
       transition: 0.2s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
     }
 
     .btn-login:hover {
       background: #c51a1a;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
     }
 
     .register {
-      font-size: 16px;
+      font-size: 15px;
+      margin-top: 5px;
     }
 
     .register a {
@@ -125,8 +157,12 @@
       font-weight: 500;
     }
 
-    /* Responsivo – em telas menores o card vai para o centro */
-    @media (max-width: 900px) {
+    .register a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 1024px) {
       body {
         overflow-y: auto;
       }
@@ -139,8 +175,24 @@
       }
 
       .bg {
+        align-items: flex-start;
+      }
+
+      .bg::before {
+        max-width: 1200px;
+        max-height: 900px;
         background-position: center top;
-        background-size: cover; /* em celular pode cortar um pouco, mas preenche tudo */
+        background-size: cover;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .login-container {
+        margin-top: 120px;
+      }
+
+      .login-container h2 {
+        font-size: 26px;
       }
     }
   </style>
@@ -167,6 +219,7 @@
     <div class="options">
       <input type="checkbox" id="lembrar" />
       <label for="lembrar">Lembrar-me</label>
+      <span>|</span>
       <a href="#">Esqueceu a senha?</a>
     </div>
 
@@ -179,6 +232,7 @@
 
   <script>
     function login() {
+      // Aqui depois você troca pela lógica real
       alert("Login clicado!");
     }
   </script>
